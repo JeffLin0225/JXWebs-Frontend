@@ -1,0 +1,16 @@
+/* Navbar.css */
+.navbar-container {
+    display: flex;
+    justify-content: center; /* 將導航欄置中 */
+    width: 100%;
+    position: fixed;
+    top: 40;
+    z-index: 1000;
+  }
+  
+  .navbar {
+    width: 100%;
+    max-width: 1200px; /* 根據需要調整最大寬度 */
+    border-radius: 20px;
+  }
+  

@@ -1,0 +1,25 @@
+
+  
+
+
+  /* BlogNavbar.css */
+.navbar-item {
+  cursor: pointer;
+  color: inherit; /* 繼承父級元素的顏色 */
+}
+
+.navbar-item:hover {
+  color: red; /* 滑鼠移過去時的顏色 */
+}
+
+.theme-switch {
+  margin-bottom: 20px;
+}
+
+/* 固定側邊導航欄 */
+.blog-navbar {
+  width: 250px;
+  position: fixed; /* 設置導航欄固定 */
+  top: 20%; /* 距離頂部 20px */
+  left: 40px; /* 距離左邊 20px */
+}
