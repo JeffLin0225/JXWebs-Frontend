@@ -15,6 +15,7 @@ interface Title {
 
 const BlogNavbar: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
   const [titles, setTitles] = useState<Title[]>([]);
+  const [activeId, setActiveId] = useState<number | null>(null);
 
   useEffect(() => {
     const getData = async () => {
@@ -25,6 +26,7 @@ const BlogNavbar: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
   }, []);
 
   const handleClick = async (id: number) => {
+    setActiveId(id);
     const content = await BlogTitleById(id);
     if (content) {
       onItemClick(content.content);
@@ -36,7 +38,11 @@ const BlogNavbar: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
       {titles.map((title) => (
         <Card key={title.id} title={title.subject} style={{ marginBottom: 10 }}>
           {title.children.map((child) => (
-            <p key={child.id} onClick={() => handleClick(child.id)} className="navbar-item">
+            <p
+              key={child.id}
+              onClick={() => handleClick(child.id)}
+              className={`navbar-item ${activeId === child.id ? 'active' : ''}`}
+            >
               {child.subject}
             </p>
           ))}

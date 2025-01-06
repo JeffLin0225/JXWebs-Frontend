@@ -1,15 +1,44 @@
-
-  
-
-
-  /* BlogNavbar.css */
+/* BlogNavbar.css */
 .navbar-item {
   cursor: pointer;
   color: inherit; /* 繼承父級元素的顏色 */
+  transition: all 0.3s ease; /* 添加過渡效果 */
+  padding: 10px 15px; /* 添加內邊距 */
+  border-radius: 5px; /* 添加圓角 */
+  text-decoration: underline; /* 當前項目顯示底線 */
+  font-size: larger;
+  font-weight: bolder;
+  
 }
 
+/* 卡片樣式 */ 
+  .ant-card { 
+    border-radius: 10px; /* 圓角 */  
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加陰影效果 */ 
+    transition: all 0.3s ease; /* 添加過渡效果 */ 
+  } 
+  .ant-card:hover { 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 增強陰影效果 */ 
+    transform: translateY(-5px); /* 卡片上移效果 */ 
+  }
+
 .navbar-item:hover {
-  color: red; /* 滑鼠移過去時的顏色 */
+  /* color: white;  */
+  /* background-color: black;  */
+  border: rgb(15, 14, 14) double 3px ;
+  text-decoration: underline; /* 滑鼠移過去時顯示底線 */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 添加陰影效果 */
+  transform: scale(1.05); /* 放大效果 */
+}
+
+.navbar-item.active {
+  font-size: larger;
+  font-weight: bolder;
+  color: white; /* 當前項目文字顏色 */
+  background-color: black; /* 當前項目背景色 */
+  border: rgb(247, 238, 238) double 3px ;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7); /* 添加更強的陰影效果 */
+  transform: scale(1.1); /* 放大效果 */
 }
 
 .theme-switch {
@@ -20,6 +49,30 @@
 .blog-navbar {
   width: 250px;
   position: fixed; /* 設置導航欄固定 */
-  top: 20%; /* 距離頂部 20px */
-  left: 40px; /* 距離左邊 20px */
+  top: 20%; /* 距離頂部 20% */
+  left: 40px; /* 距離左邊 40px */
+  background-color: #0d0d0e; /* 背景色 */
+  padding: 20px; /* 內邊距 */
+  border-radius: 10px; /* 圓角 */
+  border: white 3px solid;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 1); /* 添加陰影效果 */
+}
+
+/* 添加媒體查詢以支援不同設備 */
+@media (max-width: 768px) {
+  .blog-navbar {
+    width: 100%; /* 全寬 */
+    position: static; /* 設置為靜態位置 */
+    margin-bottom: 20px; /* 底部邊距 */
+    padding: 10px; /* 內邊距 */
+    box-shadow: none; /* 移除陰影 */
+  }
+
+  .navbar-item {
+    font-size: 18px; /* 調整字體大小 */
+  }
+
+  .theme-switch {
+    margin-bottom: 10px;
+  }
 }

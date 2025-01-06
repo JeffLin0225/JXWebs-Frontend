@@ -1,7 +1,8 @@
 // Navbar.tsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { HomeOutlined , AppstoreOutlined, MailOutlined, SettingOutlined ,GithubFilled} from '@ant-design/icons';
+import { HomeOutlined , AppstoreOutlined, GithubFilled} from '@ant-design/icons';
+// MailOutlined, SettingOutlined ,
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 import './Navbar.css'; 
