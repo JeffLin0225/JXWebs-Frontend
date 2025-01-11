@@ -46,7 +46,7 @@ const Navbar: React.FC = () => {
         </div>
         <div
           className={`navbar-item ${activeKey === 'writeblog' ? 'active' : ''}`} style={{textDecoration : 'none'}}
-          onClick={() => handleClick('blog')}
+          onClick={() => handleClick('writeblog')}
         >
           寫blog
         </div>

@@ -5,10 +5,9 @@
   transition: all 0.3s ease; /* 添加過渡效果 */
   padding: 10px 15px; /* 添加內邊距 */
   border-radius: 5px; /* 添加圓角 */
-  text-decoration: underline; /* 當前項目顯示底線 */
+  /* text-decoration: underline; 當前項目顯示底線 */
   font-size: larger;
   font-weight: bolder;
-  
 }
 
 /* 卡片樣式 */ 

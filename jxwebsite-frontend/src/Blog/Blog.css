@@ -8,7 +8,7 @@
 .blog-content {
   flex: 1;
   padding-left: 290px; /* 留出空間以避免內容重疊 */
-  max-width: 1100px; /* 設置內容區域的最大寬度 */
+  max-width: 50%; /* 設置內容區域的最大寬度 */
   margin: 20px auto; /* 添加自動水平邊距以居中對齊 */
   padding: 20px; /* 添加內容區域的內邊距 */
   border: wheat solid 3px;

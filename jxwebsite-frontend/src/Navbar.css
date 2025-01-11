@@ -21,6 +21,8 @@
 .navbar-items {
   display: flex;
   gap: 20px; /* 按鈕之間的間距 */
+  flex-wrap: wrap;
+
 }
 
 /* Navbar 連結項目 */
