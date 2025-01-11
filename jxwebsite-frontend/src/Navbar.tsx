@@ -1,77 +1,77 @@
-// Navbar.tsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { HomeOutlined , AppstoreOutlined, GithubFilled} from '@ant-design/icons';
-// MailOutlined, SettingOutlined ,
-import type { MenuProps } from 'antd';
-import { Menu } from 'antd';
-import './Navbar.css'; 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub , faBlogger} from '@fortawesome/free-brands-svg-icons'; // 正確導入 GitHub 圖標
+import { faHome, faStar ,faSun , faMoon} from '@fortawesome/free-solid-svg-icons';
 
 
-type MenuItem = Required<MenuProps>['items'][number];
-
-const items: MenuItem[] = [
-  {
-    label: '首頁',
-    key: '',
-    icon: <HomeOutlined />,
-  },
-  {
-    label: 'About',
-    key: 'about',
-    icon: <AppstoreOutlined />,
-  },
-  {
-    label: '部落格',
-    key: 'blog',
-    icon: <AppstoreOutlined />,
-  },
-  {
-    disabled:true,
-    label: 'Blog',
-    key: 'asd',
-    icon: <GithubFilled />,
-    children: [
-        {
-          type: 'group',
-          label: 'Item 1',
-          children: [
-            { label: 'Option 1', key: 'setting:1' },
-            { label: 'Option 2', key: 'setting:2' },
-          ],
-        },
-        {
-          type: 'group',
-          label: 'Item 2',
-          children: [
-            { label: 'Option 3', key: 'setting:3' },
-            { label: 'Option 4', key: 'setting:4' },
-          ],
-        },
-      ],
-  },
-  {
-    key: 'external',
-    icon: <GithubFilled/>,
-    label: (
-      <a href="https://github.com/JeffLin0225" target="_blank" rel="noopener noreferrer">
-        GitHub
-      </a>
-    ),
-  },
-];
+import './Navbar.css';
 
 const Navbar: React.FC = () => {
-  const [current, setCurrent] = useState('home');
+  const [activeKey, setActiveKey] = useState('');
+  const [isNightMode, setIsNightMode] = useState(false); // 狀態來切換夜間模式
   const navigate = useNavigate();
 
-  const onClick: MenuProps['onClick'] = (e) => {
-    console.log('click ', e);
-    setCurrent(e.key);
-    navigate(`/${e.key}`);
+  const handleClick = (key: string) => {
+    setActiveKey(key);
+    navigate(`/${key}`);
   };
 
-  return ( <div  className="navbar-container"> <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} className="navbar" /> </div> );
+  const toggleNightMode = () => {
+    setIsNightMode(prev => !prev);
+    document.body.classList.toggle('night-mode', !isNightMode); // 切換主體的背景顏色
+  };
+
+  return (
+    <nav className={`navbar ${isNightMode ? 'night' : 'day'}`}>
+      <div className="navbar-items">
+        <div
+          className={`navbar-item ${activeKey === '' ? 'active' : ''}`} style={{textDecoration : 'none'}}
+          onClick={() => handleClick('')}
+        >
+          <FontAwesomeIcon icon={faHome} /> 首頁        
+        </div>
+        <div
+          className={`navbar-item ${activeKey === 'about' ? 'active' : ''}`} style={{textDecoration : 'none'}}
+          onClick={() => handleClick('about')}
+        >
+          <FontAwesomeIcon icon={faStar} /> 關於我
+        </div>
+        <div
+          className={`navbar-item ${activeKey === 'blog' ? 'active' : ''}`} style={{textDecoration : 'none'}}
+          onClick={() => handleClick('blog')}
+        >
+          <FontAwesomeIcon icon={faBlogger} />  部落格
+         
+        </div>
+        <div
+          className={`navbar-item ${activeKey === 'writeblog' ? 'active' : ''}`} style={{textDecoration : 'none'}}
+          onClick={() => handleClick('blog')}
+        >
+          寫blog
+        </div>
+        <div
+  className={`navbar-item ${activeKey === 'github' ? 'active' : ''}`}
+  style={{ textDecoration: 'none' }}
+>
+  <a 
+    href="https://github.com/JeffLin0225"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{ color: 'inherit', textDecoration: 'none' }} // 保持與其他navbar項目一致的樣式
+  >
+    <FontAwesomeIcon icon={faGithub} /> GitHub
+  </a>
+</div>
+        <div
+          className="navbar-item toggle-mode"
+          onClick={toggleNightMode}
+        >
+          {isNightMode ? <FontAwesomeIcon icon={faSun}/> : <FontAwesomeIcon icon={faMoon} />}
+        </div>
+      </div>
+    </nav>
+  );
 };
 
 export default Navbar;

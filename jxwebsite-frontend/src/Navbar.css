@@ -1,16 +1,79 @@
-/* Navbar.css */
-.navbar-container {
-    display: flex;
-    justify-content: center; /* 將導航欄置中 */
-    width: 100%;
-    position: fixed;
-    top: 40;
-    z-index: 1000;
-  }
-  
-  .navbar {
-    width: 100%;
-    max-width: 1200px; /* 根據需要調整最大寬度 */
-    border-radius: 20px;
-  }
-  
+/* Navbar 基本樣式 */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px; /* 增加左右內邊距 */
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%); /* 居中顯示 */
+  width: auto; /* 寬度根據內容自適應 */
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 增加陰影 */
+  background: linear-gradient(to bottom, #3b4a63, #232f3f); /* 添加顏色層次 */
+  border-radius: 15px; /* 圓角效果 */
+  max-width: 1200px; /* 最大寬度限制 */
+  margin-top: 10px;
+}
+
+/* Navbar 連結項目 */
+.navbar-items {
+  display: flex;
+  gap: 20px; /* 按鈕之間的間距 */
+}
+
+/* Navbar 連結項目 */
+.navbar-item {
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 8px 15px; /* 按鈕內部空間 */
+  border-radius: 8px; /* 按鈕邊角圓潤 */
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.navbar-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px); /* 鼠標懸停時，略微向上移動 */
+}
+
+/* 當前選中的項目 */
+.navbar-item.active {
+  background-color: #007bff;
+  color: white;
+}
+
+/* 切換模式按鈕 */
+.navbar-item.toggle-mode {
+  background: linear-gradient(to bottom, #f2f4bd, #f8ed0c); /* 添加顏色層次 */
+  transition: background 2s ease, color 2s ease;
+
+  color: #3a3737;
+  font-weight: bolder;
+  border-radius: 8px; /* 圓角 */
+}
+
+/* 夜間模式 */
+body.night-mode {
+  background: linear-gradient(to bottom, #fbc9a0,#fb7602 ); /* 添加顏色層次 */
+  /* transition: background 2s ease, color 2s ease;   */
+  color: #f8e6e6;
+}
+
+.navbar.night {
+  background-color: #333;
+  color: #fff;
+}
+
+.navbar.day {
+  background-color: #222;
+  color: #f0f0f0;
+}
+
+/* 白天模式 */
+body {
+  background: linear-gradient(to bottom, #494d50, #232f3f); /* 添加顏色層次 */
+  color: #f0f0f0;
+}
+

@@ -1,0 +1,74 @@
+/* 外部容器樣式 */
+.about-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* 內容區域樣式 */
+.about-content {
+  background: linear-gradient(to bottom right, rgb(22, 22, 22), #9fa2a7); /* 漸層背景 */
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 900px;
+  width: 100%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 自我介紹段落的容器 */
+.about-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+}
+
+/* 文字區域樣式 */
+.about-text {
+  flex: 3;
+}
+
+.about-title {
+  font-size: 28px;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.about-description {
+  font-size: 16px;
+  color: whitesmoke;
+  line-height: 1.6;
+}
+
+.textt {
+  margin-top: 10px;
+  color: wheat;
+  font-style: italic;
+}
+
+/* 圖片區域樣式 */
+.about-image-container {
+  margin-top: 60px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-image {
+  max-width: 250px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image-caption {
+  margin: 10px;
+  font-size: 14px;
+  color: #e8dbdb;
+  text-align: center;
+}

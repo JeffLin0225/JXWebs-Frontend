@@ -1,6 +1,8 @@
 /* Blog.css */
 .blog-container {
   display: flex;
+  min-height: 100vh;
+
 }
 
 .blog-content {
