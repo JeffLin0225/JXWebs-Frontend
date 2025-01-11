@@ -3,7 +3,7 @@ import { Card } from 'antd';
 import { BlogTitle, BlogTitleById } from './BlogTitle'; // 確保引入正確的文件
 import './BlogNavbar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faArrowRight , faEye , faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 interface BlogNavbarProps {
   onItemClick: (content: string, createtime: string,updatetime: string ) => void;  // 更新為包含 createtime

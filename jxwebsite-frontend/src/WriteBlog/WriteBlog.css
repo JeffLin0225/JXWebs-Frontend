@@ -1,0 +1,194 @@
+/* 主要容器 */
+.writeblog-container {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    padding: 24px;
+    width: 100%;
+    height: 100vh;
+    background-color: #675f6d;
+}
+
+/* 側邊欄 */
+.writeblog-sidebar {
+    flex: 0 0 320px;
+    background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    overflow-y: auto;
+}
+
+/* 文章內容區域 */
+.writeblog-content {
+    flex: 0 0 60%;
+    padding: 24px;
+    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    height: calc(100vh - 48px);
+    overflow-y: auto;
+}
+
+/* 操作按鈕區 */
+.writeblog-actions {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.writeblog-add-button {
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #60a5fa, #3b82f6);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex: 1;
+}
+
+.writeblog-add-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* 標題卡片 */
+.writeblog-navbar-card {
+    margin-bottom: 20px;
+    padding: 16px;
+    background: linear-gradient(135deg, #ffffff, #998bd8);
+    border-radius: 8px;
+    border: 1px solid #dbe5ee;
+    transition: all 0.3s;
+}
+
+.writeblog-navbar-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* 卡片標題 */
+.navbar-card-title {
+    font-size: 1.25rem;
+    color: #1e293b;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+/* 標題項目 */
+.writeblog-navbar-item {
+    cursor: pointer;
+    padding: 12px;
+    margin: 6px 0;
+    font-size: 0.95rem;
+    color: #394453;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.writeblog-navbar-item:hover {
+    background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+    transform: translateX(4px);
+}
+
+.writeblog-navbar-item.active {
+    background: linear-gradient(135deg, #ed10aa, #dd8daa);
+    color: #dce1ef;
+    font-weight: 500;
+    border: solid 3px black ;
+
+}
+
+/* 新增表單 */
+.writeblog-add-form,
+.writeblog-add-article-form {
+    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    margin-bottom: 20px;
+}
+
+.writeblog-add-form input,
+.writeblog-add-article-form input,
+.writeblog-add-article-form select {
+    width: 100%;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    background: #ffffff;
+}
+
+/* 文章編輯區域 */
+.writeblog-edit-area {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Quill 編輯器自定義樣式 */
+.writeblog-quill-editor {
+    flex-grow: 1;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: #060606;
+    margin-bottom: 20px;
+    color: #e7ebf1;
+}
+
+.writeblog-quill-editor .ql-toolbar {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background: #f8fafc;
+}
+
+/* 按鈕樣式 */
+.writeblog-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.writeblog-save-button {
+    padding: 8px 20px;
+    background: linear-gradient(135deg, #60a5fa, #3b82f6);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.writeblog-save-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.writeblog-cancel-button {
+    padding: 8px 20px;
+    background: linear-gradient(135deg, #94a3b8, #64748b);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.writeblog-cancel-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(100, 116, 139, 0.3);
+}
+
+.writeblog-empty-state {
+    text-align: center;
+    color: #64748b;
+    padding: 40px;
+    font-size: 1.1rem;
+}
+
+.writeblog-createtime{
+    text-decoration: underline;
+}
