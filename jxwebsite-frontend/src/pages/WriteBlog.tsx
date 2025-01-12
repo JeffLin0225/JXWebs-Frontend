@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import '../WriteBlog/WriteBlog.css';
-import { BlogTitle, BlogTitleById } from '../Blog/BlogTitle';
+import {BlogAllTitle, BlogTitle, BlogTitleById } from '../Blog/BlogTitle';
+import {  saveNewTitle, saveNewArticle } from '../WriteBlog/WriteBlog';
+
 
 interface BlogNavbarProps {
   onItemClick: (content: string, createtime: string, updatetime: string) => void;
@@ -15,6 +17,9 @@ interface Title {
 }
 
 const WriteBlog: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
+  const [reloadFlag, setReloadFlag] = useState(false); // reload
+
+  const [allTitles, setAllTitles] = useState<{ id: number; subject: string }[]>([]); // 用于存储大标题
   const [titles, setTitles] = useState<Title[]>([]);
   const [activeId, setActiveId] = useState<number | null>(null);
   const [content, setContent] = useState<string>('');
@@ -27,8 +32,27 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
   const [newArticleContent, setNewArticleContent] = useState<string>('');
 
   useEffect(() => {
-    fetchTitles();
-  }, []);
+    fetchAllTitles(); // 只获取大标题列表
+  }, [reloadFlag]); // 当 reloadFlag 改变时触发
+  
+  // 这个 effect 只会执行 fetchTitles，且不会受 reloadFlag 的影响
+  useEffect(() => {
+    fetchTitles(); // 获取其他数据
+    fetchAllTitles(); // 只获取大标题列表
+  }, []); // 这个 effect 只会在组件挂载时执行一次
+
+  const handleReload = () => {
+    setReloadFlag(prev => !prev);  // 修改状态，强制重新渲染
+  };
+
+  const fetchAllTitles = async () => {
+    try {
+      const result = await BlogAllTitle(); // 获取所有大标题
+      setAllTitles(result);
+    } catch (error) {
+      console.error('获取大标题列表失败:', error);
+    }
+  };
 
   const fetchTitles = async () => {
     try {
@@ -46,7 +70,7 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
         setActiveId(id);
         setContent(contentData.content);
         setIsEditing(false);
-        onItemClick(contentData.content, contentData.createtime, contentData.updatetime);
+        // onItemClick(contentData.content, contentData.createtime, contentData.updatetime);
       }
     } catch (error) {
       console.error('獲取文章內容失敗:', error);
@@ -87,15 +111,16 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
 
   const handleSaveNewTitle = async () => {
     if (!newTitleName.trim()) {
-      alert('請輸入分類名稱');
+      alert('請輸入文章名稱');
       return;
     }
     try {
       // TODO: 實現保存新標題的 API 調用
-      // const response = await saveNewTitle(newTitleName);
-      // await fetchTitles();
+      await saveNewTitle(newTitleName);
       setIsAddingTitle(false);
       setNewTitleName('');
+      alert('新增（分類）成功！！！');
+      handleReload();
     } catch (error) {
       console.error('保存新標題失敗:', error);
     }
@@ -103,7 +128,7 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
 
   const handleSaveNewArticle = async () => {
     if (!selectedParentId) {
-      alert('請選擇文章分類');
+      alert('請選擇（ 分類 ）分類');
       return;
     }
     if (!newArticleTitle.trim()) {
@@ -112,12 +137,9 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
     }
     try {
       // TODO: 實現保存新文章的 API 調用
-      // const response = await saveNewArticle({
-      //   parentId: selectedParentId,
-      //   title: newArticleTitle,
-      //   content: newArticleContent
-      // });
-      // await fetchTitles();
+      await saveNewArticle(selectedParentId, newArticleTitle, newArticleContent);
+      await BlogTitle(); // 刷新标题列表
+
       setIsAddingArticle(false);
       setNewArticleTitle('');
       setNewArticleContent('');
@@ -186,8 +208,8 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
               value={selectedParentId || ''}
               onChange={(e) => setSelectedParentId(Number(e.target.value))}
             >
-              <option value="">選擇分類</option>
-              {titles.map((title) => (
+              <option value="">請選擇（分類）</option>
+              {allTitles.map((title) => (
                 <option key={title.id} value={title.id}>
                   {title.subject}
                 </option>
@@ -197,7 +219,7 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
               type="text"
               value={newArticleTitle}
               onChange={(e) => setNewArticleTitle(e.target.value)}
-              placeholder="文章標題"
+              placeholder="輸入文章標題"
               className="writeblog-input"
             />
             <div className="writeblog-editor-container">

@@ -1,5 +1,15 @@
 import axios from "../setting/axios";
 
+export const BlogAllTitle = async () => {
+  try {
+    const response = await axios.get('/blog/findAllBlogTitle');
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching data', error);
+    return [];
+  }
+};
+
 export const BlogTitle = async () => {
   try {
     const response = await axios.get('/blog/titles');
