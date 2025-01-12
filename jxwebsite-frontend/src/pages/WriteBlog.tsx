@@ -9,7 +9,7 @@ import {faBookmark,faArrowRight ,faFile ,faXmark ,faCheck ,faPenToSquare} from '
 
 
 interface BlogNavbarProps {
-  onItemClick: (content: string, createtime: string, updatetime: string) => void;
+  onItemClic?: (content: string, createtime: string, updatetime: string) => void;
 }
 
 interface Title {
