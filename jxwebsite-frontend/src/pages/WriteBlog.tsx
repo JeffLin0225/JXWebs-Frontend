@@ -20,6 +20,7 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
   const [content, setContent] = useState<string>('');
   const [isAddingTitle, setIsAddingTitle] = useState<boolean>(false);
   const [isAddingArticle, setIsAddingArticle] = useState<boolean>(false);
+  const [isEditing, setIsEditing] = useState<boolean>(false);
   const [newTitleName, setNewTitleName] = useState<string>('');
   const [selectedParentId, setSelectedParentId] = useState<number | null>(null);
   const [newArticleTitle, setNewArticleTitle] = useState<string>('');
@@ -44,6 +45,7 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
       if (contentData) {
         setActiveId(id);
         setContent(contentData.content);
+        setIsEditing(false);
         onItemClick(contentData.content, contentData.createtime, contentData.updatetime);
       }
     } catch (error) {
@@ -55,9 +57,21 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
     try {
       // TODO: 實現保存文章的 API 調用
       // const response = await saveContent(activeId, content);
+      setIsEditing(false);
       alert('文章已保存');
     } catch (error) {
       console.error('保存文章失敗:', error);
+    }
+  };
+
+  const handleEdit = () => {
+    setIsEditing(true);
+  };
+
+  const handleCancel = () => {
+    setIsEditing(false);
+    if (activeId) {
+      handleClick(activeId);
     }
   };
 
@@ -72,6 +86,10 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
   };
 
   const handleSaveNewTitle = async () => {
+    if (!newTitleName.trim()) {
+      alert('請輸入分類名稱');
+      return;
+    }
     try {
       // TODO: 實現保存新標題的 API 調用
       // const response = await saveNewTitle(newTitleName);
@@ -86,6 +104,10 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
   const handleSaveNewArticle = async () => {
     if (!selectedParentId) {
       alert('請選擇文章分類');
+      return;
+    }
+    if (!newArticleTitle.trim()) {
+      alert('請輸入文章標題');
       return;
     }
     try {
@@ -146,7 +168,8 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
                 className={`writeblog-navbar-item ${activeId === child.id ? 'active' : ''}`}
               >
                 <span className="writeblog-arrow-icon">→</span>
-                {child.subject} <br />
+                {child.subject}
+                <br />
                 <span className="writeblog-createtime">
                   {child.createtime ? new Date(child.createtime).toLocaleString() : '無日期'}
                 </span>
@@ -175,13 +198,16 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
               value={newArticleTitle}
               onChange={(e) => setNewArticleTitle(e.target.value)}
               placeholder="文章標題"
+              className="writeblog-input"
             />
-            <ReactQuill
-              value={newArticleContent}
-              onChange={setNewArticleContent}
-              theme="snow"
-              className="writeblog-quill-editor"
-            />
+            <div className="writeblog-editor-container">
+              <ReactQuill
+                value={newArticleContent}
+                onChange={setNewArticleContent}
+                theme="snow"
+                className="writeblog-quill-editor"
+              />
+            </div>
             <div className="writeblog-buttons">
               <button className="writeblog-save-button" onClick={handleSaveNewArticle}>
                 保存
@@ -193,20 +219,34 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
           </div>
         ) : (
           <div className="writeblog-edit-area">
+            {activeId && (
+              <div className="writeblog-action-buttons">
+                {isEditing ? (
+                  <>
+                    <button className="writeblog-save-button" onClick={handleSave}>
+                      保存
+                    </button>
+                    <button className="writeblog-cancel-button" onClick={handleCancel}>
+                      取消
+                    </button>
+                  </>
+                ) : (
+                  <button className="writeblog-save-button" onClick={handleEdit}>
+                    修改
+                  </button>
+                )}
+              </div>
+            )}
             {activeId ? (
-              <>
+              <div className="writeblog-editor-container">
                 <ReactQuill
                   value={content}
                   onChange={setContent}
                   theme="snow"
                   className="writeblog-quill-editor"
+                  readOnly={!isEditing}
                 />
-                <div className="writeblog-buttons">
-                  <button className="writeblog-save-button" onClick={handleSave}>
-                    保存
-                  </button>
-                </div>
-              </>
+              </div>
             ) : (
               <div className="writeblog-empty-state">請選擇一篇文章</div>
             )}
