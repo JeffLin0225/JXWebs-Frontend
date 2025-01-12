@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 interface BlogNavbarProps {
-  onItemClick: (content: string, createtime: string, updatetime: string) => void;
+  onItemClick: (subject : string , content: string, createtime: string, updatetime: string) => void;
 }
 
 interface Title {
@@ -36,7 +36,7 @@ const BlogNavbar: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
     try {
       const content = await BlogTitleById(id);
       if (content) {
-        onItemClick(content.content, content.createtime, content.updatetime);
+        onItemClick(content.subject , content.content, content.createtime, content.updatetime);
       }
     } catch (error) {
       console.error(`Error fetching content for ID ${id}:`, error);

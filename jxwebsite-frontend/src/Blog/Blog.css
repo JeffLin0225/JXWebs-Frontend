@@ -10,7 +10,6 @@
   margin: 20px ; /* 添加自動水平邊距以居中對齊 */
   padding: 20px; /* 添加內容區域的內邊距 */
   margin-right: 22%;
-
   border: wheat solid 3px;
   background: linear-gradient(135deg, #3e393c, #676c72);
   border-radius: 10px; /* 添加圓角 */

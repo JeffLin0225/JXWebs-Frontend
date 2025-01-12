@@ -3,7 +3,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import '../WriteBlog/WriteBlog.css';
 import {BlogAllTitle, BlogTitle, BlogTitleById } from '../Blog/BlogTitle';
-import {  saveNewTitle, saveNewArticle } from '../WriteBlog/WriteBlog';
+import {  saveNewTitle, saveNewArticle , modifyArticle} from '../WriteBlog/WriteBlog';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faBookmark,faArrowRight ,faFile ,faXmark ,faCheck ,faPenToSquare} from '@fortawesome/free-solid-svg-icons';
 
@@ -32,6 +32,10 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
   const [selectedParentId, setSelectedParentId] = useState<number | null>(null);
   const [newArticleTitle, setNewArticleTitle] = useState<string>('');
   const [newArticleContent, setNewArticleContent] = useState<string>('');
+  const [currentTitle, setCurrentTitle] = useState<string>('');
+  const [currentCreatetime, setCurrentCreatetime] = useState<string | null>(null);  
+    const [currentUpdatetime, setCurrentUpdatetime] = useState<string | null>(null);  
+
 
   useEffect(() => {
     fetchAllTitles(); // 只获取大标题列表
@@ -70,8 +74,11 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
       const contentData = await BlogTitleById(id);
       if (contentData) {
         setActiveId(id);
+        setCurrentTitle(contentData.subject); // 設置當前標題
         setContent(contentData.content);
         setIsEditing(false);
+        setCurrentCreatetime( contentData.createtime)
+        setCurrentUpdatetime( contentData.updatetime)
         // onItemClick(contentData.content, contentData.createtime, contentData.updatetime);
       }
     } catch (error) {
@@ -81,8 +88,12 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
 
   const handleSave = async () => {
     try {
+      if (activeId === null) {
+        alert('請先選擇一篇文章');
+        return;
+      }
       // TODO: 實現保存文章的 API 調用
-      // const response = await saveContent(activeId, content);
+      await modifyArticle(activeId , currentTitle, content);      
       setIsEditing(false);
       alert('文章已保存');
     } catch (error) {
@@ -173,10 +184,10 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
             />
             <div className="writeblog-buttons">
               <button className="writeblog-save-button" onClick={handleSaveNewTitle}>
-              <FontAwesomeIcon icon={faCheck} />  保存
+              <FontAwesomeIcon icon={faCheck} />  新增文章
               </button>
               <button className="writeblog-cancel-button" onClick={() => setIsAddingTitle(false)}>
-              <FontAwesomeIcon icon={faXmark} />  取消
+              <FontAwesomeIcon icon={faXmark} />  ( 取消 )新增
               </button>
             </div>
           </div>
@@ -246,6 +257,14 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
               <div className="writeblog-action-buttons">
                 {isEditing ? (
                   <>
+                  {/* 編輯模式下顯示標題輸入框 */}
+                  <input
+                    type="text"
+                    value={currentTitle}
+                    onChange={(e) => setCurrentTitle(e.target.value)}
+                    className="writeblog-input"
+                    placeholder="文章標題"
+                  />
                     <button className="writeblog-save-button" onClick={handleSave}>
                     <FontAwesomeIcon icon={faCheck} />  保存
                     </button>
@@ -257,7 +276,14 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
                   <button className="writeblog-save-button" onClick={handleEdit}>
                   <FontAwesomeIcon icon={faPenToSquare} />  修改
                   </button>
-                )}
+                )}&emsp;	&emsp;
+                <span style={{fontSize:'xx-large' , textDecoration:'underline' ,color :'wheat'}}>{currentTitle}</span>&emsp;	&emsp;
+                <span style={{ fontSize: '0.9rem', color: 'white', textDecoration : 'underline'}}>
+                {currentCreatetime ? `發佈時間：${new Date(currentCreatetime).toLocaleString()}` : '無日期'}
+                </span>&emsp;	&emsp;
+                <span style={{ fontSize: '0.9rem', color: 'white', textDecoration : 'underline'}}>
+                {currentUpdatetime ? `更新時間：${new Date(currentUpdatetime).toLocaleString()}` : ''}
+                </span>
                 <hr />
               </div>
             )}
