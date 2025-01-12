@@ -39,7 +39,7 @@
 
 .writeblog-add-button {
     padding: 8px 16px;
-    background: linear-gradient(135deg, #60a5fa, #3b82f6);
+    background: linear-gradient(135deg, #60a5fa, #293e60);
     color: white;
     border: none;
     border-radius: 6px;
@@ -121,6 +121,17 @@
     background: #ffffff;
 }
 
+.writeblog-input {
+    width: 100%; /* 使输入框宽度填满父容器 */
+    padding: 10px; /* 添加适当的内边距 */
+    font-size: 14px; /* 设置字体大小 */
+    border: 1px solid #ccc; /* 设置边框颜色 */
+    border-radius: 4px; /* 边框圆角 */
+    box-sizing: border-box; /* 确保内边距不会影响到宽度 */
+    margin-bottom: 15px; /* 为了与其他元素分隔开 */
+  }
+  
+
 /* 文章編輯區域 */
 .writeblog-edit-area {
     height: 100%;
@@ -154,12 +165,13 @@
 
 .writeblog-save-button {
     padding: 8px 20px;
-    background: linear-gradient(135deg, #60a5fa, #3b82f6);
+    background: linear-gradient(135deg, #39da61, #3b82f6);
     color: white;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s;
+    margin-right:10px ;
 }
 
 .writeblog-save-button:hover {

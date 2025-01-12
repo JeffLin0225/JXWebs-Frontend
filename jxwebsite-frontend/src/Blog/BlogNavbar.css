@@ -13,7 +13,7 @@
 /* 卡片樣式 */ 
   .ant-card { 
     border-radius: 10px; /* 圓角 */  
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加陰影效果 */ 
+    box-shadow: 0 4px 8px rgba(163, 151, 151, 0.1); /* 添加陰影效果 */ 
     transition: all 0.3s ease; /* 添加過渡效果 */ 
   } 
   .ant-card:hover { 
@@ -48,7 +48,7 @@
 .blog-navbar {
   width: 250px;
   position: fixed; /* 設置導航欄固定 */
-  top: 20%; /* 距離頂部 20% */
+  top: 10%; /* 距離頂部 20% */
   left: 40px; /* 距離左邊 40px */
   background-color: #0d0d0e; /* 背景色 */
   padding: 20px; /* 內邊距 */

@@ -4,6 +4,8 @@ import 'react-quill/dist/quill.snow.css';
 import '../WriteBlog/WriteBlog.css';
 import {BlogAllTitle, BlogTitle, BlogTitleById } from '../Blog/BlogTitle';
 import {  saveNewTitle, saveNewArticle } from '../WriteBlog/WriteBlog';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faList,faArrowRight ,faFile ,faXmark ,faCheck ,faPenToSquare} from '@fortawesome/free-solid-svg-icons';
 
 
 interface BlogNavbarProps {
@@ -154,10 +156,10 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
       <div className="writeblog-sidebar">
         <div className="writeblog-actions">
           <button className="writeblog-add-button" onClick={handleAddTitleClick}>
-            新增分類
+          <FontAwesomeIcon icon={faList} />  新增分類
           </button>
           <button className="writeblog-add-button" onClick={handleAddArticleClick}>
-            新增文章
+          <FontAwesomeIcon icon={faFile} />  新增文章
           </button>
         </div>
 
@@ -171,10 +173,10 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
             />
             <div className="writeblog-buttons">
               <button className="writeblog-save-button" onClick={handleSaveNewTitle}>
-                保存
+              <FontAwesomeIcon icon={faCheck} />  保存
               </button>
               <button className="writeblog-cancel-button" onClick={() => setIsAddingTitle(false)}>
-                取消
+              <FontAwesomeIcon icon={faXmark} />  取消
               </button>
             </div>
           </div>
@@ -182,15 +184,14 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
 
         {titles.map((title) => (
           <div key={title.id} className="writeblog-navbar-card">
-            <h3 className="navbar-card-title">{title.subject}</h3>
+           <h3 className="navbar-card-title"><FontAwesomeIcon icon={faList} /> {title.subject}</h3>
             {title.children.map((child) => (
               <p
                 key={child.id}
                 onClick={() => handleClick(child.id)}
                 className={`writeblog-navbar-item ${activeId === child.id ? 'active' : ''}`}
               >
-                <span className="writeblog-arrow-icon">→</span>
-                {child.subject}
+              <FontAwesomeIcon icon={faArrowRight} />  {child.subject}
                 <br />
                 <span className="writeblog-createtime">
                   {child.createtime ? new Date(child.createtime).toLocaleString() : '無日期'}
@@ -232,10 +233,10 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
             </div>
             <div className="writeblog-buttons">
               <button className="writeblog-save-button" onClick={handleSaveNewArticle}>
-                保存
+              <FontAwesomeIcon icon={faCheck} />   保存
               </button>
               <button className="writeblog-cancel-button" onClick={() => setIsAddingArticle(false)}>
-                取消
+              <FontAwesomeIcon icon={faXmark} />   取消
               </button>
             </div>
           </div>
@@ -246,17 +247,18 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
                 {isEditing ? (
                   <>
                     <button className="writeblog-save-button" onClick={handleSave}>
-                      保存
+                    <FontAwesomeIcon icon={faCheck} />  保存
                     </button>
                     <button className="writeblog-cancel-button" onClick={handleCancel}>
-                      取消
+                    <FontAwesomeIcon icon={faXmark} />  取消
                     </button>
                   </>
                 ) : (
                   <button className="writeblog-save-button" onClick={handleEdit}>
-                    修改
+                  <FontAwesomeIcon icon={faPenToSquare} />  修改
                   </button>
                 )}
+                <hr />
               </div>
             )}
             {activeId ? (

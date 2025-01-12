@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub , faBlogger} from '@fortawesome/free-brands-svg-icons'; // 正確導入 GitHub 圖標
-import { faHome, faStar ,faSun , faMoon} from '@fortawesome/free-solid-svg-icons';
+import { faHome, faStar , faPenToSquare ,faSun , faMoon} from '@fortawesome/free-solid-svg-icons';
 
 
 import './Navbar.css';
@@ -48,7 +48,7 @@ const Navbar: React.FC = () => {
           className={`navbar-item ${activeKey === 'writeblog' ? 'active' : ''}`} style={{textDecoration : 'none'}}
           onClick={() => handleClick('writeblog')}
         >
-          寫blog
+        <FontAwesomeIcon icon={faPenToSquare} />  寫blog
         </div>
         <div
   className={`navbar-item ${activeKey === 'github' ? 'active' : ''}`}
