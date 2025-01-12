@@ -6,8 +6,8 @@ export const saveNewTitle = async (titleName: string) => {
 };
 
 export const saveNewArticle = async (parentId: number, title: string, content: string) => {
-  const response = await axios.post(`/articles`, {
-    parentId,
+  const response = await axios.post(`/writeblog/insertBlogContent`, {
+    blogTitle: { id : parentId },
     subject: title,
     content,
   });

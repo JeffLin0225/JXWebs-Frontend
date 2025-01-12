@@ -6,13 +6,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 interface BlogNavbarProps {
-  onItemClick: (content: string, createtime: string,updatetime: string ) => void;  // 更新為包含 createtime
+  onItemClick: (content: string, createtime: string, updatetime: string) => void;
 }
 
 interface Title {
   id: number;
   subject: string;
-  children: { id: number; subject: string; createtime: string ; }[];  // 添加 createtime 屬性
+  children: { id: number; subject: string; createtime: string }[];
 }
 
 const BlogNavbar: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
@@ -21,35 +21,49 @@ const BlogNavbar: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
 
   useEffect(() => {
     const getData = async () => {
-      const result = await BlogTitle();
-      setTitles(result);
+      try {
+        const result = await BlogTitle();
+        setTitles(result);
+      } catch (error) {
+        console.error('Error fetching titles:', error);
+      }
     };
     getData();
   }, []);
 
   const handleClick = async (id: number) => {
     setActiveId(id);
-    const content = await BlogTitleById(id);
-    if (content) {
-      // 傳遞 content 和 createtime
-      onItemClick(content.content, content.createtime , content.updatetime);
+    try {
+      const content = await BlogTitleById(id);
+      if (content) {
+        onItemClick(content.content, content.createtime, content.updatetime);
+      }
+    } catch (error) {
+      console.error(`Error fetching content for ID ${id}:`, error);
     }
   };
 
   return (
-    <div className="blog-navbar">
+    <div className="navbar-container">
       {titles.map((title) => (
-        <Card key={title.id} title={title.subject} style={{ marginBottom: 10 }}>
+        <Card key={title.id} title={title.subject}>
           {title.children.map((child) => (
             <p
               key={child.id}
               onClick={() => handleClick(child.id)}
               className={`navbar-item ${activeId === child.id ? 'active' : ''}`}
             >
-              <FontAwesomeIcon icon={faArrowRight} />&nbsp;&nbsp;
-              {child.subject} <br />
-              {/* 顯示 createtime */}
-              <span style={{ fontSize: '0.8rem', color: 'gray', marginLeft: '10px' , textDecoration: 'underline' }}>
+              <FontAwesomeIcon icon={faArrowRight} /> &nbsp;&nbsp;
+              {child.subject}
+              <br />
+              <span
+                style={{
+                  fontSize: '0.8rem',
+                  color: 'gray', /* 當前項目文字顏色 */
+                  marginLeft: '10px',
+                  textDecoration: 'underline',
+                }}
+              >
                 {child.createtime ? new Date(child.createtime).toLocaleString() : '無日期'}
               </span>
             </p>

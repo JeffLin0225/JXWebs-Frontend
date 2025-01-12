@@ -27,7 +27,7 @@
   border: rgb(15, 14, 14) double 3px ;
   text-decoration: underline; /* 滑鼠移過去時顯示底線 */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* 添加陰影效果 */
-  transform: scale(1.05); /* 放大效果 */
+  transform: scale(1.2); /* 放大效果 */
 }
 
 .navbar-item.active {
@@ -44,34 +44,41 @@
   margin-bottom: 20px;
 }
 
-/* 固定側邊導航欄 */
-.blog-navbar {
-  width: 250px;
-  position: fixed; /* 設置導航欄固定 */
-  top: 10%; /* 距離頂部 20% */
-  left: 40px; /* 距離左邊 40px */
-  background-color: #0d0d0e; /* 背景色 */
+/* BlogNavbar.css */
+
+/* 確保側邊欄有固定的大小，不受其他內容影響 */
+.navbar-container {
+  width: 250px; /* 固定寬度 */
+  position: relative; /* 如果不需要固定在頁面某處，可以用 relative */
+  top: 0; /* 初始位置為 0 */
+  margin: 0 auto; /* 置中 */
+  background-color: #0a0a32; /* 背景顏色 */
   padding: 20px; /* 內邊距 */
-  border-radius: 10px; /* 圓角 */
+  border-radius: 10px; /* 圓角邊框 */
   border: white 3px solid;
   box-shadow: 0 0 20px rgba(0, 0, 0, 1); /* 添加陰影效果 */
 }
 
-/* 添加媒體查詢以支援不同設備 */
+/* 卡片之間的間距 */
+.navbar-container .ant-card {
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #eddfe8, #f5daf5);
+
+}
+
+/* 調整響應式設計，支援小螢幕 */
 @media (max-width: 768px) {
-  .blog-navbar {
-    width: 100%; /* 全寬 */
-    position: static; /* 設置為靜態位置 */
-    margin-bottom: 20px; /* 底部邊距 */
-    padding: 10px; /* 內邊距 */
-    box-shadow: none; /* 移除陰影 */
+  .navbar-container {
+    width: 100%; /* 全螢幕寬度 */
+    position: static; /* 移除固定位置 */
+    margin-bottom: 20px; /* 增加底部間距 */
+    padding: 10px;
   }
 
   .navbar-item {
-    font-size: 18px; /* 調整字體大小 */
-  }
-
-  .theme-switch {
-    margin-bottom: 10px;
+    font-size: 16px; /* 調整字體大小以適應小螢幕 */
   }
 }
+.theme-switch {
+    margin-bottom: 10px;
+  }

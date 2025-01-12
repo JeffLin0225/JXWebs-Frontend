@@ -2,17 +2,17 @@
 .blog-container {
   display: flex;
   min-height: 100vh;
-
 }
 
 .blog-content {
   flex: 1;
-  padding-left: 290px; /* 留出空間以避免內容重疊 */
   max-width: 50%; /* 設置內容區域的最大寬度 */
-  margin: 20px auto; /* 添加自動水平邊距以居中對齊 */
+  margin: 20px ; /* 添加自動水平邊距以居中對齊 */
   padding: 20px; /* 添加內容區域的內邊距 */
+  margin-right: 22%;
+
   border: wheat solid 3px;
-  background-color: black;
+  background: linear-gradient(135deg, #3e393c, #676c72);
   border-radius: 10px; /* 添加圓角 */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 添加陰影以提升視覺效果 */
 }

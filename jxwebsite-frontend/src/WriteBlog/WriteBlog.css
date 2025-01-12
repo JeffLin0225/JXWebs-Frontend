@@ -23,7 +23,7 @@
 .writeblog-content {
     flex: 0 0 60%;
     padding: 24px;
-    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+    background: linear-gradient(135deg, #3e393c, #676c72);
     border-radius: 12px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
     height: calc(100vh - 48px);
@@ -144,7 +144,7 @@
     flex-grow: 1;
     border: 1px solid #e2e8f0;
     border-radius: 8px;
-    background: #060606;
+    background: linear-gradient(135deg, #211f21, #2c2e31);
     margin-bottom: 20px;
     color: #e7ebf1;
 }

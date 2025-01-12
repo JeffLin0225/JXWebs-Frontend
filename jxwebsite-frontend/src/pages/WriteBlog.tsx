@@ -5,7 +5,7 @@ import '../WriteBlog/WriteBlog.css';
 import {BlogAllTitle, BlogTitle, BlogTitleById } from '../Blog/BlogTitle';
 import {  saveNewTitle, saveNewArticle } from '../WriteBlog/WriteBlog';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faList,faArrowRight ,faFile ,faXmark ,faCheck ,faPenToSquare} from '@fortawesome/free-solid-svg-icons';
+import {faBookmark,faArrowRight ,faFile ,faXmark ,faCheck ,faPenToSquare} from '@fortawesome/free-solid-svg-icons';
 
 
 interface BlogNavbarProps {
@@ -18,7 +18,7 @@ interface Title {
   children: { id: number; subject: string; createtime: string; }[];
 }
 
-const WriteBlog: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
+const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
   const [reloadFlag, setReloadFlag] = useState(false); // reload
 
   const [allTitles, setAllTitles] = useState<{ id: number; subject: string }[]>([]); // 用于存储大标题
@@ -156,7 +156,7 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
       <div className="writeblog-sidebar">
         <div className="writeblog-actions">
           <button className="writeblog-add-button" onClick={handleAddTitleClick}>
-          <FontAwesomeIcon icon={faList} />  新增分類
+          <FontAwesomeIcon icon={faBookmark} />  新增分類
           </button>
           <button className="writeblog-add-button" onClick={handleAddArticleClick}>
           <FontAwesomeIcon icon={faFile} />  新增文章
@@ -184,7 +184,7 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
 
         {titles.map((title) => (
           <div key={title.id} className="writeblog-navbar-card">
-           <h3 className="navbar-card-title"><FontAwesomeIcon icon={faList} /> {title.subject}</h3>
+           <h3 className="navbar-card-title"><FontAwesomeIcon icon={faBookmark} /> {title.subject}</h3>
             {title.children.map((child) => (
               <p
                 key={child.id}
