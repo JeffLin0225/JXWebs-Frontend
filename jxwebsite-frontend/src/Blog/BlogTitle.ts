@@ -2,7 +2,7 @@ import axios from "../setting/axios";
 
 export const BlogAllTitle = async () => {
   try {
-    const response = await axios.get('/blog/findAllBlogTitle');
+    const response = await axios.get('/blog/findAllBlogBigTitle');
     return response.data;
   } catch (error) {
     console.error('Error fetching data', error);
@@ -12,7 +12,7 @@ export const BlogAllTitle = async () => {
 
 export const BlogTitle = async () => {
   try {
-    const response = await axios.get('/blog/titles');
+    const response = await axios.get('/blog/findAllBlogChildTitle');
     return response.data;
   } catch (error) {
     console.error('Error fetching data', error);

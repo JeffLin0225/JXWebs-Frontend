@@ -22,3 +22,8 @@ export const modifyArticle = async (articalId: number, subject: string, content:
   });
   return response.data;
 };
+
+export const deleteArticle = async (articalId: number) => {
+  const response = await axios.delete(`/writeblog/deleteBlog/${articalId}`);
+  return response.data;
+};

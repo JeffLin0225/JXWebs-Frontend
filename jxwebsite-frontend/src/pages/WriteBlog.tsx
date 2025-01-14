@@ -3,7 +3,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import '../WriteBlog/WriteBlog.css';
 import {BlogAllTitle, BlogTitle, BlogTitleById } from '../Blog/BlogTitle';
-import {  saveNewTitle, saveNewArticle , modifyArticle} from '../WriteBlog/WriteBlog';
+import {  saveNewTitle, saveNewArticle , modifyArticle,deleteArticle} from '../WriteBlog/WriteBlog';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faBookmark,faArrowRight ,faFile ,faXmark ,faCheck ,faPenToSquare} from '@fortawesome/free-solid-svg-icons';
 
@@ -34,11 +34,12 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
   const [newArticleContent, setNewArticleContent] = useState<string>('');
   const [currentTitle, setCurrentTitle] = useState<string>('');
   const [currentCreatetime, setCurrentCreatetime] = useState<string | null>(null);  
-    const [currentUpdatetime, setCurrentUpdatetime] = useState<string | null>(null);  
+  const [currentUpdatetime, setCurrentUpdatetime] = useState<string | null>(null);  
 
 
   useEffect(() => {
-    fetchAllTitles(); // 只获取大标题列表
+    // fetchAllTitles(); // 只获取大标题列表
+    fetchTitles();
   }, [reloadFlag]); // 当 reloadFlag 改变时触发
   
   // 这个 effect 只会执行 fetchTitles，且不会受 reloadFlag 的影响
@@ -96,6 +97,7 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
       await modifyArticle(activeId , currentTitle, content);      
       setIsEditing(false);
       alert('文章已保存');
+      handleReload();
     } catch (error) {
       console.error('保存文章失敗:', error);
     }
@@ -157,10 +159,26 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
       setNewArticleTitle('');
       setNewArticleContent('');
       setSelectedParentId(null);
+      alert('新增文章成功！！！棒棒der');
+      handleReload();
     } catch (error) {
       console.error('保存新文章失敗:', error);
     }
   };
+
+  const handleDelete = async ()=>{
+    try{
+      if(!activeId){
+        alert('沒選文章');
+        return
+      }
+      await deleteArticle(activeId);
+      handleReload();
+    }catch(error){
+      console.error('刪除文章失敗:', error);
+    }
+    
+  }
 
   return (
     <div className="writeblog-container">
@@ -244,7 +262,7 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
             </div>
             <div className="writeblog-buttons">
               <button className="writeblog-save-button" onClick={handleSaveNewArticle}>
-              <FontAwesomeIcon icon={faCheck} />   保存
+              <FontAwesomeIcon icon={faCheck} />   新增文章
               </button>
               <button className="writeblog-cancel-button" onClick={() => setIsAddingArticle(false)}>
               <FontAwesomeIcon icon={faXmark} />   取消
@@ -266,7 +284,7 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
                     placeholder="文章標題"
                   />
                     <button className="writeblog-save-button" onClick={handleSave}>
-                    <FontAwesomeIcon icon={faCheck} />  保存
+                    <FontAwesomeIcon icon={faCheck} />  保存修改
                     </button>
                     <button className="writeblog-cancel-button" onClick={handleCancel}>
                     <FontAwesomeIcon icon={faXmark} />  取消
@@ -283,7 +301,10 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
                 </span>&emsp;	&emsp;
                 <span style={{ fontSize: '0.9rem', color: 'white', textDecoration : 'underline'}}>
                 {currentUpdatetime ? `更新時間：${new Date(currentUpdatetime).toLocaleString()}` : ''}
-                </span>
+                </span>&emsp;	&emsp;
+                <button className="writeblog-save-button" onClick={handleDelete}>
+                  <FontAwesomeIcon icon={faPenToSquare} />  刪除文章
+                </button>
                 <hr />
               </div>
             )}
