@@ -310,14 +310,26 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
             )}
             {activeId ? (
               <div className="writeblog-editor-container">
-                <ReactQuill
-                  value={content}
-                  onChange={setContent}
-                  theme="snow"
-                  className="writeblog-quill-editor"
-                  readOnly={!isEditing}
-                />
-              </div>
+              <ReactQuill
+                value={content}
+                onChange={setContent}
+                theme="snow"
+                modules={{
+                  toolbar: [
+                    [{ header: [1, 2, false] }], // 標題選項
+                    ['bold', 'italic', 'underline'], // 粗體、斜體、底線
+                    ['image', 'code-block'], // 插入圖片和代碼區塊
+                  ],
+                }}
+                formats={[
+                  'header', // 支援標題
+                  'bold', 'italic', 'underline', // 支援文字樣式
+                  'image', 'code-block', // 支援圖片與代碼區塊
+                ]}
+                className="writeblog-quill-editor"
+                readOnly={!isEditing}
+              />
+            </div>
             ) : (
               <div className="writeblog-empty-state">請選擇一篇文章</div>
             )}
