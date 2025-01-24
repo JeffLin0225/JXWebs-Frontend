@@ -144,9 +144,10 @@
     flex-grow: 1;
     border: 1px solid #e2e8f0;
     border-radius: 8px;
-    background: linear-gradient(135deg, #211f21, #2c2e31);
+    /* background: linear-gradient(135deg, #211f21, #2c2e31); */
+    background: wheat;
     margin-bottom: 20px;
-    color: #e7ebf1;
+    color: #0b0d0f;
 }
 
 .writeblog-quill-editor .ql-toolbar {
@@ -173,6 +174,10 @@
     transition: all 0.2s;
     margin-right:10px ;
 }
+.ql-snow .ql-editor pre.ql-syntax {
+    background-color: white; /* 設置為白色背景 */
+    color: black; /* 設置文字顏色為黑色 */
+  }
 
 .writeblog-save-button:hover {
     transform: translateY(-1px);

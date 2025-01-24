@@ -172,8 +172,10 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
         alert('沒選文章');
         return
       }
+      alert('確定要刪除嗎！！！？？？');
       await deleteArticle(activeId);
       handleReload();
+      alert('刪除文章成功！！！');
     }catch(error){
       console.error('刪除文章失敗:', error);
     }
@@ -257,6 +259,18 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
                 value={newArticleContent}
                 onChange={setNewArticleContent}
                 theme="snow"
+                modules={{
+                  toolbar: [
+                    [{ header: [1, 2, false] }], // 標題選項
+                    ['bold', 'italic', 'underline'], // 粗體、斜體、底線
+                    ['image', 'code-block'], // 插入圖片和代碼區塊
+                  ],
+                }}
+                formats={[
+                  'header', // 支援標題
+                  'bold', 'italic', 'underline', // 支援文字樣式
+                  'image', 'code-block', // 支援圖片與代碼區塊
+                ]}
                 className="writeblog-quill-editor"
               />
             </div>
