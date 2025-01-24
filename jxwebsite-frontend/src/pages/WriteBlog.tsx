@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactQuill from 'react-quill';
+import Swal from 'sweetalert2';
 import 'react-quill/dist/quill.snow.css';
 import '../WriteBlog/WriteBlog.css';
 import {BlogAllTitle, BlogTitle, BlogTitleById } from '../Blog/BlogTitle';
@@ -90,13 +91,18 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
   const handleSave = async () => {
     try {
       if (activeId === null) {
-        alert('請先選擇一篇文章');
+        Swal.fire('請先選擇一篇文章');
         return;
       }
       // TODO: 實現保存文章的 API 調用
       await modifyArticle(activeId , currentTitle, content);      
       setIsEditing(false);
-      alert('文章已保存');
+      Swal.fire({
+        icon: "success",
+        title: "文章已保存",
+        showConfirmButton: false,
+        timer: 1500
+      });
       handleReload();
     } catch (error) {
       console.error('保存文章失敗:', error);
@@ -126,7 +132,7 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
 
   const handleSaveNewTitle = async () => {
     if (!newTitleName.trim()) {
-      alert('請輸入文章名稱');
+      Swal.fire('請輸入文章名稱');
       return;
     }
     try {
@@ -134,20 +140,20 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
       await saveNewTitle(newTitleName);
       setIsAddingTitle(false);
       setNewTitleName('');
-      alert('新增（分類）成功！！！');
+      Swal.fire('新增（分類）成功！！！', '', 'success');
       handleReload();
     } catch (error) {
-      console.error('保存新標題失敗:', error);
+      Swal.fire('保存新標題失敗', '', 'error');
     }
   };
 
   const handleSaveNewArticle = async () => {
     if (!selectedParentId) {
-      alert('請選擇（ 分類 ）分類');
+      Swal.fire('請選擇（ 分類 ）分類', '', 'warning');
       return;
     }
     if (!newArticleTitle.trim()) {
-      alert('請輸入文章標題');
+      Swal.fire('請輸入文章標題', '', 'warning');
       return;
     }
     try {
@@ -159,25 +165,39 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
       setNewArticleTitle('');
       setNewArticleContent('');
       setSelectedParentId(null);
-      alert('新增文章成功！！！棒棒der');
+      Swal.fire({
+        icon: "success",
+        title: "新增文章成功！！！棒棒der",
+        showConfirmButton: false,
+        timer: 1500
+      });
       handleReload();
     } catch (error) {
-      console.error('保存新文章失敗:', error);
+      Swal.fire('保存新文章失敗', '', 'error');
     }
   };
 
   const handleDelete = async ()=>{
     try{
       if(!activeId){
-        alert('沒選文章');
+        Swal.fire('沒選文章', '', 'warning');
         return
       }
-      alert('確定要刪除嗎！！！？？？');
-      await deleteArticle(activeId);
-      handleReload();
-      alert('刪除文章成功！！！');
+
+      await Swal.fire({
+        title: "確定要刪除文章嗎？？？",
+        showCancelButton: true,
+        confirmButtonText: "刪除",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          deleteArticle(activeId);
+          handleReload();
+          Swal.fire('刪除成功！！！', '', 'success');
+        } 
+      });
+
     }catch(error){
-      console.error('刪除文章失敗:', error);
+      Swal.fire('刪除文章失敗', '', 'error');
     }
     
   }
@@ -204,7 +224,7 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
             />
             <div className="writeblog-buttons">
               <button className="writeblog-save-button" onClick={handleSaveNewTitle}>
-              <FontAwesomeIcon icon={faCheck} />  新增文章
+              <FontAwesomeIcon icon={faCheck} />  新增分類
               </button>
               <button className="writeblog-cancel-button" onClick={() => setIsAddingTitle(false)}>
               <FontAwesomeIcon icon={faXmark} />  ( 取消 )新增
