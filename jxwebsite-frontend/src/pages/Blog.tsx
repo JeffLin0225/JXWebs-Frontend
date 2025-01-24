@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import BlogNavbar from '../Blog/BlogNavbar';
 import '../Blog/Blog.css'; // 確保引入 CSS 檔案
+import sanitizeHtml from 'sanitize-html';
+
 
 const Blog: React.FC = () => {
   const [currentContent, setCurrentContent] = useState<string | null>(null);
@@ -16,6 +18,20 @@ const Blog: React.FC = () => {
     setCurrentUpdatetime( updatetime)
   };
 
+  const sanitizedContent = currentContent 
+    ? sanitizeHtml(currentContent, {
+        allowedTags: [
+          'p', 'br', 'b', 'i', 'strong', 'em', 
+          'u', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+          'ul', 'ol', 'li', 'span'
+        ],
+        allowedAttributes: {
+          // 如果需要保留某些屬性
+          'span': ['style']
+        }
+      }) 
+    : '';
+
   return (
     <div className="blog-container">
       <BlogNavbar onItemClick={handleItemClick} />
@@ -29,7 +45,10 @@ const Blog: React.FC = () => {
           <span style={{ fontSize: '0.9rem', color: 'white', textDecoration : 'underline'}}>
           {currentUpdatetime ? `更新時間：${new Date(currentUpdatetime).toLocaleString()}` : ''}
           </span>
-          <div dangerouslySetInnerHTML={{ __html: currentContent }} />
+          <div 
+          dangerouslySetInnerHTML={{ __html: sanitizedContent }} 
+          className="blog-content-html" 
+          />
           </>
         ) : (
           <p>選擇一個項目以顯示內容</p>
