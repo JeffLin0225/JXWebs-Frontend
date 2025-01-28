@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Blog from './pages/Blog';
 import WriteBlog from './pages/WriteBlog';
+import Login from './secure/Login';
 
 const RouterComponent: React.FC = () => {
   return (
@@ -13,7 +14,9 @@ const RouterComponent: React.FC = () => {
       <Route path="/about" element={<About />} />
       <Route path="/blog" element={<Blog />} />
       <Route path="/writeblog" element={<WriteBlog />} />
-      
+      <Route path="/login" element={<Login onLogin={function (username: string): void {
+        throw new Error('Function not implemented.');
+      } } />} />
     </Routes>
   );
 };

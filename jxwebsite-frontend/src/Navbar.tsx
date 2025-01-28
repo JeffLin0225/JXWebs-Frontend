@@ -51,6 +51,12 @@ const Navbar: React.FC = () => {
         <FontAwesomeIcon icon={faPenToSquare} />  寫blog
         </div>
         <div
+          className={`navbar-item ${activeKey === 'login' ? 'active' : ''}`} style={{textDecoration : 'none'}}
+          onClick={() => handleClick('login')}
+        >
+        <FontAwesomeIcon icon={faPenToSquare} />  登入
+        </div>
+        <div
   className={`navbar-item ${activeKey === 'github' ? 'active' : ''}`}
   style={{ textDecoration: 'none' }}
 >

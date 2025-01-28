@@ -1,0 +1,56 @@
+.modal {
+    display: block; /* 顯示模態框 */
+    z-index: 1; /* 置於頂層 */
+    left: 0;
+    top: 0;
+    width: 100%; /* 全屏寬度 */
+    height: 100%; /* 全屏高度 */
+    overflow: auto; /* 自動顯示滾動條 */
+  }
+  
+  .modal-content {
+    color: rgb(16, 3, 3); /* 文字顏色 */
+    background-color: #ebdfdf;
+    font-weight: bolder; /* 字體加粗 */
+    font-size: 1.5em; /* 字體較大 */
+    text-shadow: #ecd7d7 1px 1px 1px; /* 文字陰影 */
+    box-shadow: #280202 3px 3px 3px; /* 方框陰影 */
+    margin: 10% auto; /* 中心位置 */
+    padding: 20px; /* 內邊距 */
+    border: 3px solid #210202; /* 邊框 */
+    width: 80%; /* 寬度 */
+    max-width: 400px; /* 最大寬度 */
+    border-radius: 10px; /* 圓角 */
+  }
+  
+  input[type="text"], input[type="password"] {
+    width: 100%; /* 全寬 */
+    padding: 15px; /* 內邊距 */
+    margin: 10px 0; /* 外邊距 */
+    display: inline-block; /* 行內塊 */
+    border: 3px solid #1d0303; /* 邊框 */
+    box-sizing: border-box; /* 設置 box-sizing */
+    border-radius: 5px; /* 圓角 */
+    font-size: 1.2em; /* 字體較大 */
+  }
+  
+  button[type="submit"] {
+    background: linear-gradient(135deg, #8b7b9c 0%, #7e8a9f 100%); /* 漸層色背景 */
+    color: white; /* 字體顏色白色 */
+    padding: 10px 20px; /* 內邊距 */
+    margin: 10px 0; /* 外邊距 */
+    border: 3px solid  #8359b9 ; /* 無邊框 */
+    cursor: pointer; /* 鼠標樣式 */
+    width: 100%; /* 全寬 */
+    border-radius: 5px; /* 圓角 */
+    font-size: 1em; /* 字體大小 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 方框陰影 */
+  }
+  
+  button[type="submit"]:hover {
+    background: linear-gradient(135deg, #8359b9 0%, #c386dd 100%); /* 懸停時的漸層色背景 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* 懸停時的方框陰影 */
+  }
+  
+  
+  
