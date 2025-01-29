@@ -14,9 +14,7 @@ const RouterComponent: React.FC = () => {
       <Route path="/about" element={<About />} />
       <Route path="/blog" element={<Blog />} />
       <Route path="/writeblog" element={<WriteBlog />} />
-      <Route path="/login" element={<Login onLogin={function (username: string): void {
-        throw new Error('Function not implemented.');
-      } } />} />
+      <Route path="/login" element={<Login />} />
     </Routes>
   );
 };
