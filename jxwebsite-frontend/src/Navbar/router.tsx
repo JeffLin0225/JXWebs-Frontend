@@ -1,11 +1,11 @@
 // routes.tsx
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import About from './pages/About';
-import Blog from './pages/Blog';
-import WriteBlog from './pages/WriteBlog';
-import Login from './secure/Login';
+import Home from '../pages/Home';
+import About from '../pages/About';
+import Blog from '../pages/Blog';
+import WriteBlog from '../pages/WriteBlog';
+import Login from '../secure/Login';
 
 const RouterComponent: React.FC = () => {
   return (

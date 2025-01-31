@@ -1,6 +1,6 @@
 import React from 'react';
-import Navbar from './Navbar';
-import RouterComponent from './router'; // 引入路由組件
+import Navbar from './Navbar/Navbar';
+import RouterComponent from './Navbar/router'; // 引入路由組件
 import  { useState } from 'react';
 
 const App: React.FC = () => {
