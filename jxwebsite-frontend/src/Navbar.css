@@ -42,7 +42,6 @@
 
 /* 當前選中的項目 */
 .navbar-item.active {
-  background-color: #007bff;
   color: white;
 }
 

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Swal from 'sweetalert2';
 import './Navbar.css';
 import { faGithub , faBlogger} from '@fortawesome/free-brands-svg-icons'; // 正確導入 GitHub 圖標
-import { faHome, faStar , faPenToSquare ,faSun , faMoon,faUser,faUserLargeSlash} from '@fortawesome/free-solid-svg-icons';
+import { faHome, faStar , faPenToSquare ,faSun , faMoon,faUser,faRightToBracket,faRightFromBracket} from '@fortawesome/free-solid-svg-icons';
 
 const Navbar: React.FC = () => {
   const [activeKey, setActiveKey] = useState('');
@@ -104,25 +104,29 @@ const Navbar: React.FC = () => {
             </a>
         </div>
 
-        {isLoggedIn ? (
-        <>
-          <div className="navbar-item">👤 {username} ({authority})</div>
-          <div className="navbar-item" onClick={handleLogout}>
-            <FontAwesomeIcon icon={faUserLargeSlash} />  登出
-          </div>
-        </>
-        ) : (
-          <div className="navbar-item" onClick={() => handleClick('login')}>
-            <FontAwesomeIcon icon={faUser} />  登入
-          </div>
-        )}
-
         <div
           className="navbar-item toggle-mode"
           onClick={toggleNightMode}
         >
           {isNightMode ? <FontAwesomeIcon icon={faSun}/> : <FontAwesomeIcon icon={faMoon} />}
         </div>
+
+        {isLoggedIn ? (
+        <>
+          <div className="navbar-item" style={{ background: 'linear-gradient(to bottom, rgb(236, 127, 236),rgb(203, 29, 52))'}}  >
+          <FontAwesomeIcon icon={faUser} />  {username} ({authority})
+          </div>
+          <div className="navbar-item" style={{ background: 'linear-gradient(to bottom, rgb(236, 127, 236),rgb(203, 29, 52))'}} onClick={handleLogout}>
+          <FontAwesomeIcon icon={faRightFromBracket} /> 登出
+          </div>
+        </>
+        ) : (
+          <div className="navbar-item" style={{ background: 'linear-gradient(to bottom, rgb(117, 215, 224), #115a0d)' }} onClick={() => handleClick('login')} >
+            <FontAwesomeIcon icon={faRightToBracket} /> 登入
+          </div>
+        )}
+
+        
       </div>
     </nav>
   );

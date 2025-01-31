@@ -1,7 +1,7 @@
 import React from 'react';  
 
 import './Home.css';
-import me from '../imgg/me.jpg';      // 導入圖片
+// import me from '../imgg/me.jpg';      // 導入圖片
 
 const Home: React.FC = () => {
   return (
@@ -21,7 +21,7 @@ const Home: React.FC = () => {
       <span className='textt'>目前還很菜，持續進步中！！！至於怎麼架網站就...問ChatGPT吧！</span>
       <span className='textt'>『 然後這個不是我 』</span>
       
-      <img src={me}  alt="Home" style={{borderRadius:'15px'}} />
+      {/* <img src={me}  alt="Home" style={{borderRadius:'15px'}} /> */}
       {/* <div className="home-icon-container">
         <img src="https://via.placeholder.com/50" alt="Icon 1" className="home-icon" />
         <img src="https://via.placeholder.com/50" alt="Icon 2" className="home-icon" />

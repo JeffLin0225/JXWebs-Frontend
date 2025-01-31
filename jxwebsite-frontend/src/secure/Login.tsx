@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import axiosapi from "../setting/axios";
 import './Login.css'; // 引入 CSS 樣式
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';  // 引入 useNavigate
 
 // interface LoginFormProps {
 //   onLogin: (username: string) => void;
@@ -11,7 +10,6 @@ import { useNavigate } from 'react-router-dom';  // 引入 useNavigate
 const LoginForm: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();  // 使用 useNavigate
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     axiosapi.defaults.headers.authorization = "";
