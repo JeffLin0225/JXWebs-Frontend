@@ -6,6 +6,19 @@ const axiosapi = axios.create({
   timeout: 5000
 });
 
+axiosapi.interceptors.request.use(
+  (config) => {
+    const token = sessionStorage.getItem("token"); // 從 sessionStorage 取得 token
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 axiosapi.interceptors.response.use(
   function (response) {
     return response;
