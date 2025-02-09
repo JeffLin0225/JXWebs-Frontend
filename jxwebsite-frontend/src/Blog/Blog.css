@@ -4,6 +4,34 @@
   min-height: 100vh;
 }
 
+.blog-content img {
+  max-width: 100%;  /* 使图片的宽度自适应 */
+  height: auto;  /* 保持图片比例 */
+  display: block;  /* 确保图片是块级元素，避免文本和图片一起显示 */
+  margin: 10px 0;  /* 为图片添加上下边距 */
+}
+
+.blog-content-html pre {
+  background-color: #f4dede;
+  color: #0b0b0a;
+  padding: 6px;
+  border-radius: 4px;
+  overflow-x: auto;
+  /* font-size: 1rem; */
+  font-family: 'Courier New', Courier, monospace;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* .blog-content-html code {
+  background-color: #f8f8f2;
+  color: #333;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-family: 'Courier New', Courier, monospace;
+} */
+
 .blog-content {
   flex: 1;
   max-width: 50%; /* 設置內容區域的最大寬度 */
