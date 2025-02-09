@@ -69,7 +69,7 @@ const Navbar: React.FC = () => {
           className={`navbar-item ${activeKey === '' ? 'active' : ''}`} style={{textDecoration : 'none'}}
           onClick={() => handleClick('')}
         >
-          <FontAwesomeIcon icon={faHome} /> 首頁        
+         <FontAwesomeIcon icon={faHome} /> 首頁         
         </div>
         <div
           className={`navbar-item ${activeKey === 'about' ? 'active' : ''}`} style={{textDecoration : 'none'}}

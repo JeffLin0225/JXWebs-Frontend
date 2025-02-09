@@ -17,7 +17,7 @@ const Blog: React.FC = () => {
   };
 
   return (
-    <div className="blog-container">
+    <div  style={{marginTop:'30px'}} className="blog-container">
       <BlogNavbar onItemClick={handleItemClick} />
       <div className="blog-content">
         {currentContent ? (

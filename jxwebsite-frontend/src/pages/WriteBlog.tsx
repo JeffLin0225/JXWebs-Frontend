@@ -191,7 +191,6 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
         Swal.fire('沒選文章', '', 'warning');
         return
       }
-
       await Swal.fire({
         title: "確定要刪除文章嗎？？？",
         showCancelButton: true,
@@ -199,10 +198,10 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
       }).then((result) => {
         if (result.isConfirmed) {
           deleteArticle(activeId);
-          handleReload();
           Swal.fire('刪除成功！！！', '', 'success');
         } 
       });
+      handleReload();
 
     }catch(error){
       Swal.fire('刪除文章失敗', '', 'error');
