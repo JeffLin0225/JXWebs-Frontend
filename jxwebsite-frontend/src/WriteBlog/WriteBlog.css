@@ -174,6 +174,7 @@
     cursor: pointer;
     transition: all 0.2s;
     margin-right:10px ;
+    white-space: nowrap; /* 禁止文本换行 */
 }
 .ql-snow .ql-editor pre.ql-syntax {
     background-color: white; /* 設置為白色背景 */

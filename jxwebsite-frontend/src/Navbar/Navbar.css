@@ -3,18 +3,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 30px; /* 增加左右內邊距 */
+  padding: 10px 30px;
   position: fixed;
   top: 0;
   left: 50%;
-  transform: translateX(-50%); /* 居中顯示 */
-  width: auto; /* 寬度根據內容自適應 */
-  z-index: 1000;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 增加陰影 */
-  background: linear-gradient(to bottom, #3b4a63, #232f3f); /* 添加顏色層次 */
-  border-radius: 15px; /* 圓角效果 */
-  max-width: 1200px; /* 最大寬度限制 */
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1000px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(to bottom, #3b4a63, #232f3f);
+  border-radius: 15px;
   margin-top: 10px;
+  overflow: hidden; /* 防止溢出换行 */
+  white-space: nowrap; /* 防止内容换行 */
 }
 
 /* Navbar 連結項目 */

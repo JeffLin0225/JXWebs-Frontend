@@ -113,7 +113,7 @@ const Navbar: React.FC = () => {
 
         {isLoggedIn ? (
         <>
-          <div className="navbar-item" style={{ background: 'linear-gradient(to bottom, rgb(236, 127, 236),rgb(203, 29, 52))'}}  >
+          <div className="navbar-item" style={{ background: 'linear-gradient(to bottom, rgb(236, 127, 236),rgb(45, 145, 227))'}}  >
           <FontAwesomeIcon icon={faUser} />  {username} ({authority})
           </div>
           <div className="navbar-item" style={{ background: 'linear-gradient(to bottom, rgb(236, 127, 236),rgb(203, 29, 52))'}} onClick={handleLogout}>
