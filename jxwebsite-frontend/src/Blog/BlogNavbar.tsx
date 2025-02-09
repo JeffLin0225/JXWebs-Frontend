@@ -3,7 +3,7 @@ import { Card } from 'antd';
 import { BlogTitle, BlogTitleById } from './BlogTitle'; // 確保引入正確的文件
 import './BlogNavbar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark,faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 interface BlogNavbarProps {
   onItemClick: (subject : string , content: string, createtime: string, updatetime: string) => void;
@@ -68,8 +68,10 @@ const BlogNavbar: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
 
 return (
   <div className="navbar-container">
+            <p style={{color:'white', fontWeight:'bolder',marginLeft:'5%'}}><FontAwesomeIcon icon={faBookmark} /> 分類 , <FontAwesomeIcon icon={faArrowRight} /> 文章 </p>
+    
     {groupedTitles.map((group) => (
-      <Card key={group.subject} title={group.subject}>
+      <Card key={group.subject} title={<><FontAwesomeIcon icon={faBookmark} /> {group.subject}</>}>
         {group.children.map((title) => (
           <p
             key={title.id}

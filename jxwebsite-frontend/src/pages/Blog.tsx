@@ -51,7 +51,7 @@ const Blog: React.FC = () => {
           />
           </>
         ) : (
-          <p>選擇一個項目以顯示內容</p>
+          <p className="blog-empty-state">請選擇一篇有興趣的文章～</p>
         )}
       </div>
     </div>

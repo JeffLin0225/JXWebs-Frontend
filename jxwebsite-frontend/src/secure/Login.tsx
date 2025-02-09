@@ -31,8 +31,18 @@ const LoginForm: React.FC = () => {
         sessionStorage.setItem('username', loggedInUser); // 儲存使用者名稱
         sessionStorage.setItem('authority', authority); // 儲存權限
         // onLogin(username);
-        Swal.fire('登入成功！', '', 'success');
-        window.location.href = "/";  // 使用 window.location.href 跳轉
+
+        Swal.fire({
+                text : "成功登入！",
+                icon : "success",
+                showConfirmButton: true,  
+                allowOutsideClick:false
+              }).then(function(result){
+                if(result.isConfirmed){
+                  window.location.href = "/";  // 使用 window.location.href 跳轉
+                }
+              })
+
       } else {
         Swal.fire('登入失敗', '', 'error');
       }

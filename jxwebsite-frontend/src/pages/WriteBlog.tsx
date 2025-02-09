@@ -234,6 +234,7 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
           <FontAwesomeIcon icon={faFile} />  新增文章
           </button>
         </div>
+        <p style={{color:'black', fontWeight:'bolder',marginLeft:'5%'}}><FontAwesomeIcon icon={faBookmark} /> 分類 , <FontAwesomeIcon icon={faArrowRight} /> 文章 </p>
 
         {isAddingTitle && (
           <div className="writeblog-add-form">
@@ -396,7 +397,7 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
               />
             </div>
             ) : (
-              <div className="writeblog-empty-state">請選擇一篇文章</div>
+              <div className="writeblog-empty-state">請選擇一篇有興趣的文章～</div>
             )}
           </div>
         )}

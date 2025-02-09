@@ -3,7 +3,6 @@ import Swal from 'sweetalert2';
 
 const axiosapi = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
-  // timeout: 5000
 });
 
 axiosapi.interceptors.request.use(
@@ -24,25 +23,33 @@ axiosapi.interceptors.response.use(
     return response;
   },
   function (error){
-    if(error.response && error.response.status && error.response.response === 401){
+    if(error.response && error.response.status  === 401){
       sessionStorage.clear();
       Swal.fire({
         text : "請先登入！",
-        icon : error
-      }).then(function() {
-        window.location.href = "../secure/Login";
+        icon : error,
+        showConfirmButton: true, 
+      }).then(function(result) {
+      if (result.isConfirmed) {
+        window.location.href = "../Login";
+      }
       });
       return Promise.reject();
     }
-    if(error.response && error.response.status && error.response.response === 403){
+    if(error.response && error.response.status  === 403){
       sessionStorage.clear();
       Swal.fire({
-        text : "權限不足重新登入",
-        icon : error
-      }).then(function() {
-        window.location.href = "../secure/Login";
+        text : "權限不足要重新登入嗎？",
+        icon : error,
+        showConfirmButton: true, 
+        showCancelButton:true,
+      }).then(function(result) {
+      if (result.isConfirmed) {
+        window.location.href = "../Login";
+      }
+              return Promise.reject();
+
       });
-      return Promise.reject();
     }
     return Promise.reject(error);
   }
