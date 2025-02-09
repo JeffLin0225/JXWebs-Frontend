@@ -4,7 +4,7 @@
     justify-content: center;
     gap: 32px;
     padding: 24px;
-    width: 100%;
+    /* width: 100%; */
     height: 100vh;
     background-color: #675f6d;
 }
@@ -61,6 +61,7 @@
     border-radius: 8px;
     border: 1px solid #dbe5ee;
     transition: all 0.3s;
+    color:#293e60;
 }
 
 .writeblog-navbar-card:hover {

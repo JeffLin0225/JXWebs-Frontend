@@ -13,10 +13,18 @@ interface BlogNavbarProps {
   onItemClic?: (content: string, createtime: string, updatetime: string) => void;
 }
 
+interface BlogTitleDTO {
+  id: number;
+  subject: string;
+  createtime: string;
+}
+
 interface Title {
   id: number;
   subject: string;
-  children: { id: number; subject: string; createtime: string; }[];
+  blogTitleDTO: BlogTitleDTO;
+  createtime: string;
+  updatetime: string | null;
 }
 
 const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
@@ -202,6 +210,19 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
     
   }
 
+  const groupedTitles = titles.reduce((acc, title) => {
+    const group = acc.find((group) => group.subject === title.blogTitleDTO.subject);
+    if (group) {
+      group.children.push(title); // 将小标题（title）添加到对应的组
+    } else {
+      acc.push({
+        subject: title.blogTitleDTO.subject,
+        children: [title], // 新建组并添加第一个小标题
+      });
+    }
+    return acc;
+  }, [] as { subject: string; children: Title[] }[]);
+
   return (
     <div className="writeblog-container">
       <div className="writeblog-sidebar">
@@ -233,24 +254,34 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
           </div>
         )}
 
-        {titles.map((title) => (
-          <div key={title.id} className="writeblog-navbar-card">
-           <h3 className="navbar-card-title"><FontAwesomeIcon icon={faBookmark} /> {title.subject}</h3>
-            {title.children.map((child) => (
-              <p
-                key={child.id}
-                onClick={() => handleClick(child.id)}
-                className={`writeblog-navbar-item ${activeId === child.id ? 'active' : ''}`}
-              >
-              <FontAwesomeIcon icon={faArrowRight} />  {child.subject}
-                <br />
-                <span className="writeblog-createtime">
-                  {child.createtime ? new Date(child.createtime).toLocaleString() : '無日期'}
-                </span>
-              </p>
-            ))}
-          </div>
+      {groupedTitles.map((group) => (
+        <div key={group.subject} className="writeblog-navbar-card">
+          <h3 className="navbar-card-title">
+            <FontAwesomeIcon icon={faBookmark} /> {group.subject}
+          </h3>
+          {group.children.map((title) => (
+          <p
+            key={title.id}
+            onClick={() => handleClick(title.id)}
+            className={`navbar-item ${activeId === title.id ? 'active' : ''}`}
+          >
+            <FontAwesomeIcon icon={faArrowRight} /> &nbsp;&nbsp;
+            {title.subject}
+            <br />
+            <span
+              style={{
+                fontSize: '0.8rem',
+                color: 'gray', /* 当前项目文字颜色 */
+                marginLeft: '10px',
+                textDecoration: 'underline',
+              }}
+            >
+              {title.createtime ? new Date(title.createtime).toLocaleString() : '无日期'}
+            </span>
+          </p>
         ))}
+        </div>
+      ))}
       </div>
 
       <div className="writeblog-content">

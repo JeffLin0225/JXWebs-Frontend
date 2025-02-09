@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 
 const axiosapi = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
-  timeout: 5000
+  // timeout: 5000
 });
 
 axiosapi.interceptors.request.use(
@@ -24,6 +24,16 @@ axiosapi.interceptors.response.use(
     return response;
   },
   function (error){
+    if(error.response && error.response.status && error.response.response === 401){
+      sessionStorage.clear();
+      Swal.fire({
+        text : "請先登入！",
+        icon : error
+      }).then(function() {
+        window.location.href = "../secure/Login";
+      });
+      return Promise.reject();
+    }
     if(error.response && error.response.status && error.response.response === 403){
       sessionStorage.clear();
       Swal.fire({

@@ -9,10 +9,19 @@ interface BlogNavbarProps {
   onItemClick: (subject : string , content: string, createtime: string, updatetime: string) => void;
 }
 
+
+interface BlogTitleDTO {
+  id: number;
+  subject: string;
+  createtime: string;
+}
+
 interface Title {
   id: number;
   subject: string;
-  children: { id: number; subject: string; createtime: string }[];
+  blogTitleDTO: BlogTitleDTO;
+  createtime: string;
+  updatetime: string | null;
 }
 
 const BlogNavbar: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
@@ -43,35 +52,49 @@ const BlogNavbar: React.FC<BlogNavbarProps> = ({ onItemClick }) => {
     }
   };
 
-  return (
-    <div className="navbar-container">
-      {titles.map((title) => (
-        <Card key={title.id} title={title.subject}>
-          {title.children.map((child) => (
-            <p
-              key={child.id}
-              onClick={() => handleClick(child.id)}
-              className={`navbar-item ${activeId === child.id ? 'active' : ''}`}
+ // 分组标题：将相同的 blogTitleDTO（大标题）分为一组
+ const groupedTitles = titles.reduce((acc, title) => {
+  const group = acc.find((group) => group.subject === title.blogTitleDTO.subject);
+  if (group) {
+    group.children.push(title); // 将小标题（title）添加到对应的组
+  } else {
+    acc.push({
+      subject: title.blogTitleDTO.subject,
+      children: [title], // 新建组并添加第一个小标题
+    });
+  }
+  return acc;
+}, [] as { subject: string; children: Title[] }[]);
+
+return (
+  <div className="navbar-container">
+    {groupedTitles.map((group) => (
+      <Card key={group.subject} title={group.subject}>
+        {group.children.map((title) => (
+          <p
+            key={title.id}
+            onClick={() => handleClick(title.id)}
+            className={`navbar-item ${activeId === title.id ? 'active' : ''}`}
+          >
+            <FontAwesomeIcon icon={faArrowRight} /> &nbsp;&nbsp;
+            {title.subject}
+            <br />
+            <span
+              style={{
+                fontSize: '0.8rem',
+                color: 'gray', /* 当前项目文字颜色 */
+                marginLeft: '10px',
+                textDecoration: 'underline',
+              }}
             >
-              <FontAwesomeIcon icon={faArrowRight} /> &nbsp;&nbsp;
-              {child.subject}
-              <br />
-              <span
-                style={{
-                  fontSize: '0.8rem',
-                  color: 'gray', /* 當前項目文字顏色 */
-                  marginLeft: '10px',
-                  textDecoration: 'underline',
-                }}
-              >
-                {child.createtime ? new Date(child.createtime).toLocaleString() : '無日期'}
-              </span>
-            </p>
-          ))}
-        </Card>
-      ))}
-    </div>
-  );
+              {title.createtime ? new Date(title.createtime).toLocaleString() : '无日期'}
+            </span>
+          </p>
+        ))}
+      </Card>
+    ))}
+  </div>
+);
 };
 
 export default BlogNavbar;
