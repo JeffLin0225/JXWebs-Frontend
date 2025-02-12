@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Swal from 'sweetalert2';
 import './Navbar.css';
 import { faGithub , faBlogger} from '@fortawesome/free-brands-svg-icons'; // 正確導入 GitHub 圖標
-import { faHome, faStar , faPenToSquare ,faSun , faMoon,faUser,faRightToBracket,faRightFromBracket} from '@fortawesome/free-solid-svg-icons';
+import { faHome, faSitemap , faPenToSquare ,faSun , faMoon,faUser,faRightToBracket,faRightFromBracket} from '@fortawesome/free-solid-svg-icons';
 
 const Navbar: React.FC = () => {
   const [activeKey, setActiveKey] = useState('');
@@ -75,7 +75,7 @@ const Navbar: React.FC = () => {
           className={`navbar-item ${activeKey === 'about' ? 'active' : ''}`} style={{textDecoration : 'none'}}
           onClick={() => handleClick('about')}
         >
-          <FontAwesomeIcon icon={faStar} /> 關於我
+         <FontAwesomeIcon icon={faSitemap} /> 關於架構
         </div>
         <div
           className={`navbar-item ${activeKey === 'blog' ? 'active' : ''}`} style={{textDecoration : 'none'}}
@@ -88,7 +88,7 @@ const Navbar: React.FC = () => {
           className={`navbar-item ${activeKey === 'writeblog' ? 'active' : ''}`} style={{textDecoration : 'none'}}
           onClick={() => handleClick('writeblog')}
         >
-        <FontAwesomeIcon icon={faPenToSquare} />  寫blog
+        <FontAwesomeIcon icon={faPenToSquare} />  寫Blog
         </div>
         <div
             className={`navbar-item ${activeKey === 'github' ? 'active' : ''}`}

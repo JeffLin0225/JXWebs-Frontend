@@ -1,0 +1,77 @@
+/* 外部容器 */
+.aboutWebsite-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  /* background: #000; 外部黑色背景 */
+}
+
+/* 內容區域 */
+.aboutWebsite-content {
+  margin-top: 20px;
+  margin-bottom: 50px;
+  background: linear-gradient(to bottom right, rgb(22, 22, 22), #9fa2a7); 
+  border-radius: 15px;
+  padding: 30px;
+  max-width: 90%;
+  width: 90%;
+  min-height: 90vh;  /* 讓區塊至少佔滿 90% 畫面高度 */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 介紹段落 */
+.aboutWebsite-section {
+  display: flex;
+  align-items: stretch; /* 讓內容區塊等高 */
+  gap: 20px;
+  width: 100%;
+}
+
+/* 文字內容區 */
+.aboutWebsite-text {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 讓文字置中 */
+}
+
+.aboutWebsite-title {
+  font-size: xx-large;
+  color: white;
+}
+
+.aboutWebsite-description {
+  font-size: x-large;
+  color: whitesmoke;
+  /* line-height: 1.6; */
+}
+
+/* 圖片區域 */
+.aboutWebsite-image-container {
+  display: flex;
+  justify-content: space-evenly; /* 平均分配 */
+  align-items: stretch; /* 讓圖片區塊等高 */
+  width: 100%; /* 讓圖片區塊填滿寬度 */
+}
+
+/* 單張圖片 */
+.aboutWebsite-image {
+  max-width: 800px;
+  margin-right: 50px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.aboutWebsiteimage-caption {
+  margin: 10px;
+  font-size: xx-large;
+  font-weight: bolder;
+  color: #e8dbdb;
+  text-align: center;
+  text-decoration: underline;
+}
