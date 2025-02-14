@@ -313,14 +313,22 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
                 modules={{
                   toolbar: [
                     [{ header: [1, 2, false] }], // 標題選項
-                    ['bold', 'italic', 'underline'], // 粗體、斜體、底線
-                    ['image', 'code-block'], // 插入圖片和代碼區塊
+                    ['bold', 'italic', 'underline', 'strike', 'code'], // 粗體、斜體、底線、刪除線、行內代碼
+                    [{ list: 'ordered' }, { list: 'bullet' }], // 有序與無序列表
+                    ['link', 'image', 'video'], // 插入鏈接、圖片、視頻
+                    [{ align: [] }], // 對齊選項（左、中、右）
+                    [{ indent: '-1' }, { indent: '+1' }], // 縮排
+                    ['blockquote', 'code-block'], // 引文和代碼區塊
+                    ['clean'], // 清除格式
                   ],
                 }}
                 formats={[
-                  'header', // 支援標題
-                  'bold', 'italic', 'underline', // 支援文字樣式
-                  'image', 'code-block', // 支援圖片與代碼區塊
+                  'header', 'bold', 'italic', 'underline', 'strike', 'code', // 支援文字樣式
+                  'list', 'bullet', 'ordered', // 支援列表
+                  'link', 'image', 'video', // 支援插入鏈接、圖片、視頻
+                  'align', 'indent', // 支援對齊與縮排
+                  'blockquote', 'code-block', // 支援引文和代碼區塊
+                  'clean', // 支援清除格式
                 ]}
                 className="writeblog-quill-editor"
               />
@@ -382,14 +390,22 @@ const WriteBlog: React.FC<BlogNavbarProps> = ({  }) => {
                 modules={{
                   toolbar: [
                     [{ header: [1, 2, false] }], // 標題選項
-                    ['bold', 'italic', 'underline'], // 粗體、斜體、底線
-                    ['image', 'code-block'], // 插入圖片和代碼區塊
+                    ['bold', 'italic', 'underline', 'strike', 'code'], // 粗體、斜體、底線、刪除線、行內代碼
+                    [{ list: 'ordered' }, { list: 'bullet' }], // 有序與無序列表
+                    ['link', 'image', 'video'], // 插入鏈接、圖片、視頻
+                    [{ align: [] }], // 對齊選項（左、中、右）
+                    [{ indent: '-1' }, { indent: '+1' }], // 縮排
+                    ['blockquote', 'code-block'], // 引文和代碼區塊
+                    ['clean'], // 清除格式
                   ],
                 }}
                 formats={[
-                  'header', // 支援標題
-                  'bold', 'italic', 'underline', // 支援文字樣式
-                  'image', 'code-block', // 支援圖片與代碼區塊
+                  'header', 'bold', 'italic', 'underline', 'strike', 'code', // 支援文字樣式
+                  'list', 'bullet', 'ordered', // 支援列表
+                  'link', 'image', 'video', // 支援插入鏈接、圖片、視頻
+                  'align', 'indent', // 支援對齊與縮排
+                  'blockquote', 'code-block', // 支援引文和代碼區塊
+                  'clean', // 支援清除格式
                 ]}
                 className="writeblog-quill-editor"
                 readOnly={!isEditing}

@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         sessionStorage.clear(); 
-        // window.location.href = "/";  // 使用 window.location.href 跳轉
+        window.location.href = "/";  // 使用 window.location.href 跳轉
         setIsLoggedIn(false); // 更新狀態
         Swal.fire({
           title: "已登出！",
