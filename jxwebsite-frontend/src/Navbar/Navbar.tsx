@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Swal from 'sweetalert2';
 import './Navbar.css';
-import { faGithub , faBlogger} from '@fortawesome/free-brands-svg-icons'; // 正確導入 GitHub 圖標
+import { faGithub , faBlogger,faDocker} from '@fortawesome/free-brands-svg-icons'; // 正確導入 GitHub 圖標
 import { faHome, faSitemap , faPenToSquare ,faSun , faMoon,faUser,faRightToBracket,faRightFromBracket} from '@fortawesome/free-solid-svg-icons';
 
 const Navbar: React.FC = () => {
@@ -76,6 +76,12 @@ const Navbar: React.FC = () => {
           onClick={() => handleClick('about')}
         >
          <FontAwesomeIcon icon={faSitemap} /> 關於架構
+        </div>
+        <div
+          className={`navbar-item ${activeKey === 'docker' ? 'active' : ''}`} style={{textDecoration : 'none'}}
+          onClick={() => handleClick('docker')}
+        >
+         <FontAwesomeIcon icon={faDocker} />  容器化
         </div>
         <div
           className={`navbar-item ${activeKey === 'blog' ? 'active' : ''}`} style={{textDecoration : 'none'}}

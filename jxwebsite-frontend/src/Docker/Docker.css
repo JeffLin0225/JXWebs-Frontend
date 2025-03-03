@@ -1,0 +1,122 @@
+/* 外部容器 */
+.docker-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* 內容區域 */
+.docker-content {
+  background: linear-gradient(to bottom right, #242424, #6d6f73); 
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 800px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* 標題設計 */
+.docker-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.2);
+}
+
+/* 介紹文字 */
+.docker-description {
+  font-size: 1.2rem;
+  color: #e0e0e0;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  text-align: left;  /* 使文字左對齊 */
+}
+
+/* 強調關鍵字 */
+.docker-description span {
+  color: #ffcc00;
+  font-weight: bold;
+}
+
+/* 列表項目 */
+.docker-description ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  padding-left: 20px;
+}
+
+/* 列表與圖片並排顯示 */
+.docker-description-ul-img {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  gap: 20px; /* 控制間距 */
+  margin-top: 20px;
+}
+
+/* 控制圖片大小，使其不超過容器 */
+.docker-image {
+  max-width: 100%;  /* 保證圖片寬度不超過容器 */
+  height: auto;  /* 保持比例 */
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-height: 300px; /* 限制圖片最大高度 */
+}
+
+/* 圖片放大效果 */
+.docker-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* 圖片標題 */
+.dockerimage-caption {
+  font-size: 2.0rem;
+  font-weight: bold;
+  color: #ffdd57;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+/* 提示文本：放置在標題旁邊 */
+.click-to-zoom {
+  font-size: 0.9rem;
+  color: #f8f7f1;
+  font-weight: bold;
+  margin-left: 10px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* 響應式調整 */
+@media (max-width: 768px) {
+  .docker-content {
+    padding: 20px;
+  }
+
+  .docker-title {
+    font-size: 2rem;
+  }
+
+  .docker-description {
+    font-size: 1rem;
+  }
+
+  .dockerimage-caption {
+    font-size: 1.2rem;
+  }
+
+  .docker-description-ul-img {
+    flex-direction: column;  /* 在小螢幕下改為垂直排列 */
+    gap: 10px;
+  }
+}
